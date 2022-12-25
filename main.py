@@ -1,6 +1,6 @@
 import os
 import logging
-import boto3
+# import boto3
 from functools import wraps
 from logging.config import fileConfig
 from fastapi import FastAPI, Response, status
@@ -8,9 +8,9 @@ from google_play_scraper import search
 from google_play_scraper.exceptions import ExtraHTTPError, NotFoundError
 
 fileConfig('logging.conf')
-lambda_client = boto3.client('lambda', region_name=os.getenv('REGION', 'ap-southeast-1'))
+# lambda_client = boto3.client('lambda', region_name=os.getenv('REGION', 'ap-southeast-1'))
 THROTTLING = os.getenv('THROTTLING', 100)
-LAMBDA_FUNCTION_NAME = os.getenv('LAMBDA_FUNCTION_NAME')
+# LAMBDA_FUNCTION_NAME = os.getenv('LAMBDA_FUNCTION_NAME')
 app = FastAPI()
 
 
@@ -21,10 +21,10 @@ def throttling(func):
         # handle throttling
         if counter > THROTTLING:
             # invoke lambda to swap EIP
-            lambda_client.invoke(
-                FunctionName=LAMBDA_FUNCTION_NAME,
-                InvocationType='RequestResponse'
-            )
+            # lambda_client.invoke(
+            #     FunctionName=LAMBDA_FUNCTION_NAME,
+            #     InvocationType='RequestResponse'
+            # )
             os.environ['COUNTER'] = str(0)
             logging.info(f'reset throttling')
         else:
