@@ -22,8 +22,8 @@ trying to avoid TOO MANY REQUEST (429)
 
 #### How to run
 1. run ec2 instance **disable auto assign public IP in network section** (from experiment, hosting docker on amazon-linux-2 m5.large is stable *please avoid burst type)
-- assign instance profile (IAM role from prerequisite) 
-- allow security group on target port (default from Dockerfile = 8000 TCP, allow additional 22 SSH port)
+    - assign instance profile (IAM role from prerequisite) 
+    - allow security group on target port (default from Dockerfile = 8000 TCP, allow additional 22 SSH port)
 2. create additional ENI in the same subnet of the instance and attach to the instance and using the same security group as the instance
 3. allocate 2 EIPs and associate both to the ENIs (primary from #1 and secondary from #2)
 4. ssh to the instance using EIP from secondary EIP #2 (in case, you need to keep ssh session) and install docker inside ec2 instance
