@@ -7,7 +7,8 @@ RUN pip install -r requirements.txt
 ENV PORT=8000 \
     LOG_LEVEL=DEBUG \
     LAMBDA_FUNCTION_NAME=lambda-eip-switching \
-    REGION=ap-southeast-1
+    REGION=ap-southeast-1 \
+    THROTTLING=200
 
 EXPOSE ${PORT}
 

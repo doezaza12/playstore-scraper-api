@@ -9,7 +9,7 @@ from google_play_scraper.exceptions import ExtraHTTPError, NotFoundError
 
 fileConfig('logging.conf')
 lambda_client = boto3.client('lambda', region_name=os.getenv('REGION', 'ap-southeast-1'))
-THROTTLING = os.getenv('THROTTLING', 100)
+THROTTLING = int(os.getenv('THROTTLING', 100))
 LAMBDA_FUNCTION_NAME = os.getenv('LAMBDA_FUNCTION_NAME')
 app = FastAPI()
 
